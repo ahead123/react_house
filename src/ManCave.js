@@ -14,7 +14,6 @@ export default class ManCave extends Component {
         'danger': '#c0392b'
       }
     };
-    
   }
 
   componentWillReceiveProps(props){
