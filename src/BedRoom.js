@@ -23,19 +23,9 @@ export default class BedRoom extends Component {
     }
   }
 
-  checkBedRoomColor = () => {
-    const { room_color, active_room } = this.props;
-    const { bedRoomColor } = this.state;
-    let color = bedRoomColor;
-    if(active_room == "Bed Room"){
-      color = room_color
-    }
-    return color;
-  };
-
   render(){
-    const { active_room, room_color } = this.props;
-    const { colorPalette } = this.state;
+    const { active_room } = this.props;
+    const { colorPalette, bedRoomColor } = this.state;
     const styles = {
       bedRoomStyles: {
         minHeight: 150,

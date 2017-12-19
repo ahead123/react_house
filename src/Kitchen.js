@@ -15,29 +15,27 @@ export default class Kitchen extends Component {
     };
   }
 
-  checKitchenColor = () => {
-    const { room_color, active_room } = this.props;
-    const { kitchenColor } = this.state;
-    let color = kitchenColor;
-    if(active_room == "Kitchen"){
-      color = room_color
+  componentWillReceiveProps(props){
+    if(props.active_room=="Kitchen"){
+      this.setState({ kitchenColor: props.room_color })
+    }else{
+      this.setState({ kitchenColor: 'default' })
     }
-    return color;
-  };
+  }
 
   render(){
-    const { active_room, room_color } = this.props;
-    const { colorPalette } = this.state;
+    const { active_room } = this.props;
+    const { colorPalette, kitchenColor } = this.state;
     const styles = {
       kitchenStyles: {
         minHeight: 150,
-        backgroundColor: active_room == "Kitchen" ? colorPalette[room_color] : ''
+        backgroundColor: active_room == "Kitchen" ? colorPalette[kitchenColor] : ''
       }
     };
 
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
-        <div className={`panel panel-${this.checKitchenColor()}`}>
+        <div className={`panel panel-${this.state.kitchenColor}`}>
         <div className="panel-heading">
            Kitchen
         </div>

@@ -15,29 +15,27 @@ export default class LivingRoom extends Component {
     };
   }
 
-  checkLivingRoomColor = () => {
-    const { room_color, active_room } = this.props;
-    const { livingRoomColor } = this.state;
-    let color = livingRoomColor;
-    if(active_room == "Living Room"){
-      color = room_color
+  componentWillReceiveProps(props){
+    if(props.active_room=="Living Room"){
+      this.setState({ livingRoomColor: props.room_color })
+    }else{
+      this.setState({ livingRoomColor: 'default' })
     }
-    return color;
-  };
+  }
   
   render(){
-    const { active_room, room_color } = this.props;
-    const { colorPalette } = this.state;
+    const { active_room } = this.props;
+    const { colorPalette, livingRoomColor } = this.state;
     const styles = {
       livingRoomStyles: {
         minHeight: 150,
-        backgroundColor: active_room == "Living Room" ? colorPalette[room_color] : ''
+        backgroundColor: active_room == "Living Room" ? colorPalette[livingRoomColor] : ''
       }
     };
     
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
-        <div className={`panel panel-${this.checkLivingRoomColor()}`}>
+        <div className={`panel panel-${this.state.livingRoomColor}`}>
         <div className="panel-heading">
           Living Room
         </div>

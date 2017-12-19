@@ -17,29 +17,27 @@ export default class ManCave extends Component {
     
   }
 
-  checkManCaveColor = () => {
-    const { room_color, active_room } = this.props;
-    const { manCaveColor } = this.state;
-    let color = manCaveColor;
-    if(active_room == "Man Cave"){
-      color = room_color;
+  componentWillReceiveProps(props){
+    if(props.active_room=="Man Cave"){
+      this.setState({ manCaveColor: props.room_color })
+    }else{
+      this.setState({ manCaveColor: 'default' })
     }
-    return color;
-  };
+  }
 
   render(){
-    const { active_room, room_color } = this.props;
-    const { colorPalette } = this.state;
+    const { active_room } = this.props;
+    const { colorPalette, manCaveColor } = this.state;
     const styles = {
       manCaveStyles: {
         minHeight: 150,
-        backgroundColor: active_room == "Man Cave" ? colorPalette[room_color] : ''
+        backgroundColor: active_room == "Man Cave" ? colorPalette[manCaveColor] : ''
       }
     };
 
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
-        <div className={`panel panel-${this.checkManCaveColor()}`}>
+        <div className={`panel panel-${this.state.manCaveColor}`}>
         <div className="panel-heading">
            Man Cave
         </div>
