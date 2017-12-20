@@ -26,15 +26,15 @@ export default class LivingRoom extends Component {
 
   render(){
     console.log(this.state)
-    const { active_room, furniture, colorPalette, furnitureStore } = this.props;
+    const { active_room, furniture, colorPicker, furniturePicker } = this.props;
     const { livingRoomColor, livingRoomFurniture } = this.state;
     const styles = {
       livingRoomStyles: {
         minHeight: 200,
-        backgroundColor: active_room === "Living Room" ? colorPalette[livingRoomColor] : ''
+        backgroundColor: active_room === "Living Room" ? colorPicker(livingRoomColor) : ''
       },
       imageStyles: {
-        imageURL: active_room === "Living Room" ? furnitureStore[furniture] : '',
+        imageURL: active_room === "Living Room" ? furniturePicker(furniture) : '',
         maxHeight: 100
       }
     };

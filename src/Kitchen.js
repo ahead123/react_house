@@ -26,15 +26,15 @@ export default class Kitchen extends Component {
 
   render(){
     console.log(this.state)
-    const { active_room, furniture, colorPalette, furnitureStore } = this.props;
+    const { active_room, furniture, colorPicker, furniturePicker } = this.props;
     const { kitchenColor, kitchenFurniture } = this.state;
     const styles = {
       kitchenStyles: {
         minHeight: 200,
-        backgroundColor: active_room === "Kitchen" ? colorPalette[kitchenColor] : ''
+        backgroundColor: active_room === "Kitchen" ? colorPicker(kitchenColor) : ''
       },
       imageStyles: {
-        imageURL: active_room === "Kitchen" ? furnitureStore[furniture] : '',
+        imageURL: active_room === "Kitchen" ? furniturePicker(furniture) : '',
         maxHeight: 100
       }
     };

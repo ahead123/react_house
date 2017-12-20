@@ -26,15 +26,15 @@ export default class ManCave extends Component {
 
   render(){
     console.log(this.state)
-    const { active_room, furniture, colorPalette, furnitureStore } = this.props;
+    const { active_room, furniture, colorPicker, furniturePicker } = this.props;
     const { manCaveColor, manCaveFurniture } = this.state;
     const styles = {
       manCaveStyles: {
         minHeight: 200,
-        backgroundColor: active_room === "Man Cave" ? colorPalette[manCaveColor] : ''
+        backgroundColor: active_room === "Man Cave" ? colorPicker(manCaveColor) : ''
       },
       imageStyles: {
-        imageURL: active_room === "Man Cave" ? furnitureStore[furniture] : '',
+        imageURL: active_room === "Man Cave" ? furniturePicker(furniture) : '',
         maxHeight: 100
       }
     };

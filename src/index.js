@@ -4,6 +4,7 @@ import LivingRoom from './LivingRoom';
 import BedRoom from './BedRoom';
 import Kitchen from './Kitchen';
 import ManCave from './ManCave';
+import { colorPicker, furniturePicker } from './constants';
 import './style.css';
 
 
@@ -19,43 +20,24 @@ class App extends Component {
       furniture: 'Select furniture',
       active_room: '',      
       error: '',
-      colorPalette: {
-        'success': '#27ae60',
-        'primary': '#2980b9',
-        'warning': '#f1c40f',
-        'danger': '#c0392b'
-      },
-      furnitureStore: {
-        'couch': 'https://i.pinimg.com/originals/cb/65/fb/cb65fb3931a2b1e3cb6b1a8dfbfceb82.jpg',
-        'chair': 'https://png.icons8.com/small/540/sofa.png',
-        'bed': 'http://www.ljubljanaidea.com/images/content/images/menu/acc.png',
-        'table': 'https://png.icons8.com/windows/540/table.png'
-      }
+      furniturePicker,
+      colorPicker
     }
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { room, color, furniture } = this.state;
-   
-    if(room!=="Select a room" && color!=="Select a color"){
-     this.setState({
-       room_color: color,
-       furniture,
-       active_room: room       
-      });
+    const { room, color, furniture } = this.state;   
+    if(room !== "Select a room" && color !== "Select a color"){
+     this.setState({ room_color: color, furniture, active_room: room });
     }else{
-       this.setState({error: "Please select both a room and a color!"});
+      this.setState({ error: "Please select both a room and a color!" });
     }
   };
 
   handleReset = (event) => {
     event.preventDefault();
-    this.setState({
-      error: '',
-      room_color: '',
-      active_room: ''
-    });
+    this.setState({ error: '', room_color: '', active_room: '' });
   };
 
 
@@ -65,7 +47,9 @@ class App extends Component {
       <div className="container">
 
         <div className="row">
-          <h4 className="text-center text-danger"><strong>{this.state.error}</strong></h4>
+          <h4 className="text-center text-danger">
+            <strong>{this.state.error}</strong>
+          </h4>
         </div>
 
         <div className="row">

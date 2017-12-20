@@ -25,23 +25,23 @@ export default class BedRoom extends Component {
   }
 
   render(){
-    console.log('this.props',this.props)
-    const { active_room, furniture, colorPalette, furnitureStore } = this.props;
+    console.log('this.props',this.props);
+    const { active_room, furniture, colorPicker, furniturePicker } = this.props;
     const { bedRoomColor, bedRoomFurniture } = this.state;
     const styles = {
       bedRoomStyles: {
         minHeight: 200,
-        backgroundColor: active_room === "Bed Room" ? colorPalette[bedRoomColor] : ''
+        backgroundColor: active_room === "Bed Room" ? colorPicker(bedRoomColor) : ''
       },
       imageStyles: {
-        imageURL: active_room === "Bed Room" ? furnitureStore[furniture] : '',
+        imageURL: active_room === "Bed Room" ? furniturePicker(furniture) : '',
         maxHeight: 100
       }
     };
 
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
-        <div className={`panel panel-${bedRoomColor}`}>
+        <div className={`panel panel-${bedRoomColor}`} style={styles.bedRoomStyles}>
         <div className="panel-heading">
           Bed Room
         </div>
