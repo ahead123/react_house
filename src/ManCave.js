@@ -6,7 +6,13 @@ export default class ManCave extends Component {
     super(props);
     this.state = {
       manCaveColor: 'default',
-      manCaveFurniture: ''
+      manCaveFurniture: '',
+      addMultiples: {
+        couch: false,
+        chair: false,
+        table: false,
+        bed: false
+      }
     };
   }
 
@@ -14,26 +20,41 @@ export default class ManCave extends Component {
     if(props.active_room==="Man Cave"){
       this.setState({ 
         manCaveColor: props.room_color,
-        manCaveFurniture: props.selected_furniture
+        manCaveFurniture: props.selected_furniture,
+        addMultiples: {
+          couch: props.couch_is_checked,
+          chair: props.chair_is_checked,
+          table: props.table_is_checked,
+          bed: props.bed_is_checked
+        }
       });
     }else{
       this.setState({ 
         manCaveColor: 'default', 
-        manCaveFurniture: '' 
+        manCaveFurniture: '',
+        addMultiples: {
+          couch: false,
+          chair: false,
+          table: false,
+          bed: false
+        } 
       });
     }
   }
 
   render(){    
-    const { active_room, selected_furniture, colorPicker, furniturePicker } = this.props;
-    const { manCaveColor, manCaveFurniture } = this.state;
+    const { active_room, colorPicker, furniturePicker } = this.props;
+    const { manCaveColor, manCaveFurniture, 
+      addMultiples: { 
+        couch, bed, chair, table
+      } 
+    } = this.state;
     const styles = {
       manCaveStyles: {
         minHeight: 200,
         backgroundColor: active_room === "Man Cave" ? colorPicker(manCaveColor) : ''
       },
       imageStyles: {
-        imageURL: active_room === "Man Cave" ? furniturePicker(selected_furniture) : '',
         maxHeight: 100
       }
     };
@@ -41,21 +62,31 @@ export default class ManCave extends Component {
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
         <div className={`panel panel-${manCaveColor}`}>
-        <div className="panel-heading">
-          Man Cave
-        </div>
-        <div className="panel-body" style={styles.manCaveStyles}>
-          <h4 style={{color: 'white'}}>
-          {
-            active_room === "Man Cave" && manCaveFurniture !== 'Select furniture' && manCaveFurniture !== '' ? `${manCaveFurniture} added!` : ''
-          }
-          </h4>
-          <div>
-            {
-              manCaveFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles} alt="" /> : ''
-            }
+          <div className="panel-heading">
+            Man Cave
           </div>
-        </div>
+          <div className="panel-body" style={styles.manCaveStyles}>
+            <div className="col-md-3">
+              {
+                couch ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('couch')} alt="" /> : ''
+              }   
+            </div>
+            <div className="col-md-3">
+              {
+                bed ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('bed')} alt="" /> : ''
+              }
+            </div>
+            <div className="col-md-3">
+              {
+                table ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('table')} alt="" /> : ''
+              }
+            </div>
+            <div className="col-md-3">
+              {
+                chair ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('chair')} alt="" /> : ''
+              } 
+            </div>
+          </div>
         </div>
       </div>
     )

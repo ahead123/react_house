@@ -43,7 +43,7 @@ export default class LivingRoom extends Component {
   }
 
   render(){    
-    const { active_room, colorPicker, furniturePicker, selected_furniture } = this.props;
+    const { active_room, colorPicker, furniturePicker } = this.props;
     const { 
       livingRoomColor, 
       livingRoomFurniture, 
@@ -57,7 +57,6 @@ export default class LivingRoom extends Component {
         backgroundColor: active_room === "Living Room" ? colorPicker(livingRoomColor) : ''
       },
       imageStyles: {
-        imageURL: active_room === "Living Room" ? furniturePicker(selected_furniture) : '',
         maxHeight: 100
       }
     };
@@ -71,22 +70,22 @@ export default class LivingRoom extends Component {
         <div className="panel-body" style={styles.livingRoomStyles}>
           <div className="col-md-3">
             {
-              couch ? <img style={{maxHeight: 100}} className="img-responsive" src="https://i.pinimg.com/originals/cb/65/fb/cb65fb3931a2b1e3cb6b1a8dfbfceb82.jpg" alt="" /> : ''
+              couch ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('couch')} alt="" /> : ''
             }   
           </div>
           <div className="col-md-3">
             {
-              bed ? <img style={{maxHeight: 100}} className="img-responsive" src="https://www.svgrepo.com/show/115528/bed.svg" alt="" /> : ''
+              bed ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('bed')} alt="" /> : ''
             }
           </div>
           <div className="col-md-3">
             {
-              table ? <img style={{maxHeight: 100}} className="img-responsive" src="https://png.icons8.com/windows/540/table.png" alt="" /> : ''
+              table ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('table')} alt="" /> : ''
             }
           </div>
           <div className="col-md-3">
             {
-              chair ? <img style={{maxHeight: 100}} className="img-responsive" src="https://png.icons8.com/small/540/sofa.png" alt="" /> : ''
+              chair ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('chair')} alt="" /> : ''
             } 
           </div>
         </div>

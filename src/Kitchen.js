@@ -6,7 +6,13 @@ export default class Kitchen extends Component {
     super(props);
     this.state = {
       kitchenColor: 'default',
-      kitchenFurniture: ''
+      kitchenFurniture: '',
+      addMultiples: {
+        couch: false,
+        chair: false,
+        table: false,
+        bed: false
+      }
     };
   }
 
@@ -14,26 +20,41 @@ export default class Kitchen extends Component {
     if(props.active_room==="Kitchen"){
       this.setState({ 
         kitchenColor: props.room_color,
-        kitchenFurniture: props.selected_furniture
+        kitchenFurniture: props.selected_furniture,
+        addMultiples: {
+          couch: props.couch_is_checked,
+          chair: props.chair_is_checked,
+          table: props.table_is_checked,
+          bed: props.bed_is_checked
+        }
       });
     }else{
       this.setState({ 
         kitchenColor: 'default', 
-        kitchenFurniture: '' 
+        kitchenFurniture: '',
+      addMultiples: {
+        couch: false,
+        chair: false,
+        table: false,
+        bed: false
+      } 
       });
     }
   }
 
   render(){
-    const { active_room, selected_furniture, colorPicker, furniturePicker } = this.props;
-    const { kitchenColor, kitchenFurniture } = this.state;
+    const { active_room, colorPicker, furniturePicker } = this.props;
+    const { kitchenColor, kitchenFurniture, 
+      addMultiples: { 
+        couch, bed, chair, table
+      }  
+    } = this.state;
     const styles = {
       kitchenStyles: {
         minHeight: 200,
         backgroundColor: active_room === "Kitchen" ? colorPicker(kitchenColor) : ''
       },
-      imageStyles: {
-        imageURL: active_room === "Kitchen" ? furniturePicker(selected_furniture) : '',
+      imageStyles: {        
         maxHeight: 100
       }
     };
@@ -41,21 +62,31 @@ export default class Kitchen extends Component {
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
         <div className={`panel panel-${kitchenColor}`}>
-        <div className="panel-heading">
-          Kitchen
-        </div>
-        <div className="panel-body" style={styles.kitchenStyles}>
-          <h4 style={{color: 'white'}}>
-          {
-            active_room === "Kitchen" && kitchenFurniture !== 'Select furniture' && kitchenFurniture !== '' ? `${kitchenFurniture} added!` : ''
-          }
-          </h4>
-          <div>
-            {
-              kitchenFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles} alt="" /> : ''
-            }
+          <div className="panel-heading">
+            Kitchen
           </div>
-        </div>
+          <div className="panel-body" style={styles.kitchenStyles}>
+            <div className="col-md-3">
+              {
+                couch ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('couch')} alt="" /> : ''
+              }   
+            </div>
+            <div className="col-md-3">
+              {
+                bed ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('bed')} alt="" /> : ''
+              }
+            </div>
+            <div className="col-md-3">
+              {
+                table ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('table')} alt="" /> : ''
+              }
+            </div>
+            <div className="col-md-3">
+              {
+                chair ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('chair')} alt="" /> : ''
+              } 
+            </div>
+          </div>
         </div>
       </div>
     )
