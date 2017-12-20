@@ -4,7 +4,12 @@ import LivingRoom from './LivingRoom';
 import BedRoom from './BedRoom';
 import Kitchen from './Kitchen';
 import ManCave from './ManCave';
-import { colorPicker, furniturePicker } from './constants';
+import Select from './Select';
+import { 
+  furniturePicker, 
+  colorPicker, 
+  colorSelectDropDownValues 
+} from './constants';
 import './style.css';
 
 
@@ -21,23 +26,33 @@ class App extends Component {
       active_room: '',      
       error: '',
       furniturePicker,
-      colorPicker
-    }
+      colorPicker,
+      colorSelectDropDownValues
+    };
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { room, color, furniture } = this.state;   
-    if(room !== "Select a room" && color !== "Select a color"){
-     this.setState({ room_color: color, furniture, active_room: room });
+    const { room, color, furniture } = this.state;
+   
+    if(room!=="Select a room" && color!=="Select a color"){
+     this.setState({
+       room_color: color,
+       furniture,
+       active_room: room       
+      });
     }else{
-      this.setState({ error: "Please select both a room and a color!" });
+       this.setState({error: "Please select both a room and a color!"});
     }
   };
 
   handleReset = (event) => {
     event.preventDefault();
-    this.setState({ error: '', room_color: '', active_room: '' });
+    this.setState({
+      error: '',
+      room_color: '',
+      active_room: ''
+    });
   };
 
 
@@ -47,9 +62,7 @@ class App extends Component {
       <div className="container">
 
         <div className="row">
-          <h4 className="text-center text-danger">
-            <strong>{this.state.error}</strong>
-          </h4>
+          <h4 className="text-center text-danger"><strong>{this.state.error}</strong></h4>
         </div>
 
         <div className="row">
@@ -62,38 +75,29 @@ class App extends Component {
 
         <div className="row">
           <div className="col-sm-3 styled-select blue rounded">
-            <select 
-              onChange={event => this.setState({ room: event.target.value, error: '' })}
-            >
-              <option value="Select a room">Select a room</option>
-              <option value="Living Room">Living Room</option>
-              <option value="Bed Room">Bed Room</option>
-              <option value="Kitchen">Kitchen</option>
-              <option value="Man Cave">Man Cave</option>
-            </select>
+            <Select 
+              onChange={event => this.setState({ room: event.target.value, error: '' })} 
+              values={["Select a room","Living Room","Bed Room","Kitchen","Man Cave"]} 
+            />
           </div>
 
           <div className="col-sm-3 styled-select blue rounded">
-            <select onChange={event => this.setState({ color: event.target.value, error: '' })}>
-              <option value="Select a color">Select a color</option>
-              <option value="warning">Yellow</option>
-              <option value="primary">Blue</option>
-              <option value="success">Green</option>
-              <option value="danger">Red</option>
-            </select>
+            <Select 
+              onChange={event => this.setState({ color: event.target.value, error: '' })} 
+              values={this.state.colorSelectDropDownValues} 
+            />
           </div>
 
           <div className="col-sm-3 styled-select blue rounded">
-            <select onChange={event => this.setState({ furniture: event.target.value, error: '' })}>
-              <option value="Select furniture">Select furniture</option>
-              <option value="chair">Chair</option>
-              <option value="couch">Couch</option>
-              <option value="bed">Bed</option>
-              <option value="table">Table</option>
-            </select>
+            <Select 
+              onChange={event => this.setState({ furniture: event.target.value, error: '' })} 
+              values={["Select furniture","chair","couch","bed","table"]} 
+            />
           </div>
 
         </div>
+
+        <div style={{marginTop: 30}}></div>
 
         <div style={{marginTop: 30}}></div>
 
@@ -103,7 +107,7 @@ class App extends Component {
               className="btn btn-block btn-success"
               onClick={this.handleSubmit}
             >
-              Apply Color
+              Apply Color / Update Room Selection
             </div>
           </div>
         </div>
