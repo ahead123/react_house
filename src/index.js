@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import LivingRoom from './LivingRoom';
-import BedRoom from './BedRoom';
-import Kitchen from './Kitchen';
-import ManCave from './ManCave';
-import Select from './Select';
+import LivingRoom from './components/LivingRoom';
+import BedRoom from './components/BedRoom';
+import Kitchen from './components/Kitchen';
+import ManCave from './components/ManCave';
+import { Select } from './common';
 import { 
   furniturePicker, 
   colorPicker, 
   colorSelectDropDownValues 
 } from './constants';
-import './style.css';
+import './styles/style.css';
 
 
 class App extends Component {
@@ -24,13 +24,13 @@ class App extends Component {
       room_color: '',
       furniture: 'Select furniture',
       selected_furniture: '',
-      active_room: '',      
-      error: '',
+      active_room: '',            
       color_drop_down_values: [],
       couch_is_checked: false,
       bed_is_checked: false,
       chair_is_checked: false,
       table_is_checked: false,
+      error: '',
       furniturePicker,
       colorPicker
     };

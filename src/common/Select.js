@@ -16,4 +16,4 @@ const Select = ({ onChange, values }) => {
 	)
 }
 
-export default Select
+export { Select } 
