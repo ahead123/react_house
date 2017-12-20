@@ -5,42 +5,57 @@ export default class LivingRoom extends Component {
   constructor(props){
     super(props);
     this.state = {
-     livingRoomColor: 'default',
-     colorPalette : {
-        'success': '#27ae60',
-        'primary': '#2980b9',
-        'warning': '#f1c40f',
-        'danger': '#c0392b'
-      }
+      livingRoomColor: 'default',
+      livingRoomFurniture: ''
     };
   }
 
   componentWillReceiveProps(props){
-    if(props.active_room=="Living Room"){
-      this.setState({ livingRoomColor: props.room_color })
+    if(props.active_room==="Living Room"){
+      this.setState({ 
+        livingRoomColor: props.room_color,
+        livingRoomFurniture: props.furniture
+      });
     }else{
-      this.setState({ livingRoomColor: 'default' })
+      this.setState({ 
+        livingRoomColor: 'default', 
+        livingRoomFurniture: '' 
+      });
     }
   }
-  
+
   render(){
-    const { active_room } = this.props;
-    const { colorPalette, livingRoomColor } = this.state;
+    console.log(this.state)
+    const { active_room, furniture, colorPalette, furnitureStore } = this.props;
+    const { livingRoomColor, livingRoomFurniture } = this.state;
     const styles = {
       livingRoomStyles: {
-        minHeight: 150,
-        backgroundColor: active_room == "Living Room" ? colorPalette[livingRoomColor] : ''
+        minHeight: 200,
+        backgroundColor: active_room === "Living Room" ? colorPalette[livingRoomColor] : ''
+      },
+      imageStyles: {
+        imageURL: active_room === "Living Room" ? furnitureStore[furniture] : '',
+        maxHeight: 100
       }
     };
-    
+
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
-        <div className={`panel panel-${this.state.livingRoomColor}`}>
+        <div className={`panel panel-${livingRoomColor}`}>
         <div className="panel-heading">
           Living Room
         </div>
         <div className="panel-body" style={styles.livingRoomStyles}>
-          
+          <h4 style={{color: 'white'}}>
+          {
+            active_room === "Living Room" && livingRoomFurniture !== 'Select furniture' && livingRoomFurniture !== '' ? `${livingRoomFurniture} added!` : ''
+          }
+          </h4>
+          <div>
+            {
+              livingRoomFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles}/> : ''
+            }
+          </div>
         </div>
         </div>
       </div>

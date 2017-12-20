@@ -6,42 +6,56 @@ export default class ManCave extends Component {
     super(props);
     this.state = {
       manCaveColor: 'default',
-      activeBackground: '',
-      colorPalette : {
-        'success': '#27ae60',
-        'primary': '#2980b9',
-        'warning': '#f1c40f',
-        'danger': '#c0392b'
-      }
+      manCaveFurniture: ''
     };
   }
 
   componentWillReceiveProps(props){
-    if(props.active_room=="Man Cave"){
-      this.setState({ manCaveColor: props.room_color })
+    if(props.active_room==="Man Cave"){
+      this.setState({ 
+        manCaveColor: props.room_color,
+        manCaveFurniture: props.furniture
+      });
     }else{
-      this.setState({ manCaveColor: 'default' })
+      this.setState({ 
+        manCaveColor: 'default', 
+        manCaveFurniture: '' 
+      });
     }
   }
 
   render(){
-    const { active_room } = this.props;
-    const { colorPalette, manCaveColor } = this.state;
+    console.log(this.state)
+    const { active_room, furniture, colorPalette, furnitureStore } = this.props;
+    const { manCaveColor, manCaveFurniture } = this.state;
     const styles = {
       manCaveStyles: {
-        minHeight: 150,
-        backgroundColor: active_room == "Man Cave" ? colorPalette[manCaveColor] : ''
+        minHeight: 200,
+        backgroundColor: active_room === "Man Cave" ? colorPalette[manCaveColor] : ''
+      },
+      imageStyles: {
+        imageURL: active_room === "Man Cave" ? furnitureStore[furniture] : '',
+        maxHeight: 100
       }
     };
 
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
-        <div className={`panel panel-${this.state.manCaveColor}`}>
+        <div className={`panel panel-${manCaveColor}`}>
         <div className="panel-heading">
-           Man Cave
+          Man Cave
         </div>
         <div className="panel-body" style={styles.manCaveStyles}>
-          
+          <h4 style={{color: 'white'}}>
+          {
+            active_room === "Man Cave" && manCaveFurniture !== 'Select furniture' && manCaveFurniture !== '' ? `${manCaveFurniture} added!` : ''
+          }
+          </h4>
+          <div>
+            {
+              manCaveFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles}/> : ''
+            }
+          </div>
         </div>
         </div>
       </div>

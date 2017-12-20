@@ -6,41 +6,56 @@ export default class BedRoom extends Component {
     super(props);
     this.state = {
       bedRoomColor: 'default',
-      colorPalette : {
-        'success': '#27ae60',
-        'primary': '#2980b9',
-        'warning': '#f1c40f',
-        'danger': '#c0392b'
-      }
+      bedRoomFurniture: ''
     };
   }
 
   componentWillReceiveProps(props){
-    if(props.active_room=="Bed Room"){
-      this.setState({ bedRoomColor: props.room_color })
+    if(props.active_room==="Bed Room"){
+      this.setState({ 
+        bedRoomColor: props.room_color,
+        bedRoomFurniture: props.furniture
+      });
     }else{
-      this.setState({ bedRoomColor: 'default' })
+      this.setState({ 
+        bedRoomColor: 'default', 
+        bedRoomFurniture: '' 
+      });
     }
   }
 
   render(){
-    const { active_room } = this.props;
-    const { colorPalette, bedRoomColor } = this.state;
+    console.log('this.props',this.props)
+    const { active_room, furniture, colorPalette, furnitureStore } = this.props;
+    const { bedRoomColor, bedRoomFurniture } = this.state;
     const styles = {
       bedRoomStyles: {
-        minHeight: 150,
-        backgroundColor: active_room == "Bed Room" ? colorPalette[this.state.bedRoomColor] : ''
+        minHeight: 200,
+        backgroundColor: active_room === "Bed Room" ? colorPalette[bedRoomColor] : ''
+      },
+      imageStyles: {
+        imageURL: active_room === "Bed Room" ? furnitureStore[furniture] : '',
+        maxHeight: 100
       }
     };
 
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
-        <div className={`panel panel-${this.state.bedRoomColor}`}>
+        <div className={`panel panel-${bedRoomColor}`}>
         <div className="panel-heading">
           Bed Room
         </div>
         <div className="panel-body" style={styles.bedRoomStyles}>
-          
+          <h4 style={{color: 'white'}}>
+          {
+            active_room === "Bed Room" && bedRoomFurniture !== 'Select furniture' && bedRoomFurniture !== '' ? `${bedRoomFurniture} added!` : ''
+          }
+          </h4>
+          <div>
+            {
+              bedRoomFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles}/> : ''
+            }
+          </div>
         </div>
         </div>
       </div>

@@ -16,18 +16,32 @@ class App extends Component {
       room: 'Select a room',
       color: 'Select a color',
       room_color: '',
+      furniture: 'Select furniture',
       active_room: '',      
-      error: ''
-    };
+      error: '',
+      colorPalette: {
+        'success': '#27ae60',
+        'primary': '#2980b9',
+        'warning': '#f1c40f',
+        'danger': '#c0392b'
+      },
+      furnitureStore: {
+        'couch': 'https://i.pinimg.com/originals/cb/65/fb/cb65fb3931a2b1e3cb6b1a8dfbfceb82.jpg',
+        'chair': 'https://png.icons8.com/small/540/sofa.png',
+        'bed': 'http://www.ljubljanaidea.com/images/content/images/menu/acc.png',
+        'table': 'https://png.icons8.com/windows/540/table.png'
+      }
+    }
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { room, color } = this.state
+    const { room, color, furniture } = this.state;
    
-    if(room!="Select a room" && color!="Select a color"){
+    if(room!=="Select a room" && color!=="Select a color"){
      this.setState({
-       room_color: this.state.color,
+       room_color: color,
+       furniture,
        active_room: room       
       });
     }else{
@@ -63,7 +77,7 @@ class App extends Component {
         <div style={{marginTop: 15}}></div>
 
         <div className="row">
-          <div className="col-sm-3 col-sm-offset-2 styled-select blue rounded">
+          <div className="col-sm-3 styled-select blue rounded">
             <select 
               onChange={event => this.setState({ room: event.target.value, error: '' })}
             >
@@ -75,13 +89,23 @@ class App extends Component {
             </select>
           </div>
 
-          <div className="col-sm-3 col-sm-offset-2 styled-select blue rounded">
+          <div className="col-sm-3 styled-select blue rounded">
             <select onChange={event => this.setState({ color: event.target.value, error: '' })}>
               <option value="Select a color">Select a color</option>
               <option value="warning">Yellow</option>
               <option value="primary">Blue</option>
               <option value="success">Green</option>
               <option value="danger">Red</option>
+            </select>
+          </div>
+
+          <div className="col-sm-3 styled-select blue rounded">
+            <select onChange={event => this.setState({ furniture: event.target.value, error: '' })}>
+              <option value="Select furniture">Select furniture</option>
+              <option value="chair">Chair</option>
+              <option value="couch">Couch</option>
+              <option value="bed">Bed</option>
+              <option value="table">Table</option>
             </select>
           </div>
 
@@ -95,7 +119,7 @@ class App extends Component {
               className="btn btn-block btn-success"
               onClick={this.handleSubmit}
             >
-              Update Room
+              Apply Color
             </div>
           </div>
         </div>
