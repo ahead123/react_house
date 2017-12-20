@@ -23,26 +23,31 @@ class App extends Component {
       color: 'Select a color',
       room_color: '',
       furniture: 'Select furniture',
+      selected_furniture: '',
       active_room: '',      
       error: '',
       furniturePicker,
       colorPicker,
-      colorSelectDropDownValues
+      color_drop_down_values: []
     };
   };
 
+  componentDidMount(){
+    this.setState({ color_drop_down_values: colorSelectDropDownValues })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const { room, color, furniture } = this.state;
+    const { room, color, furniture, selected_furniture } = this.state;
    
-    if(room!=="Select a room" && color!=="Select a color"){
+    if(room!=="Select a room" && color!=="Select a color" && furniture !== "Select furniture"){
      this.setState({
        room_color: color,
-       furniture,
+       selected_furniture: furniture,
        active_room: room       
       });
     }else{
-       this.setState({error: "Please select both a room and a color!"});
+       this.setState({error: "Please select a room, a color, and furnture!"});
     }
   };
 
@@ -84,7 +89,7 @@ class App extends Component {
           <div className="col-sm-3 styled-select blue rounded">
             <Select 
               onChange={event => this.setState({ color: event.target.value, error: '' })} 
-              values={this.state.colorSelectDropDownValues} 
+              values={this.state.color_drop_down_values} 
             />
           </div>
 
@@ -107,7 +112,7 @@ class App extends Component {
               className="btn btn-block btn-success"
               onClick={this.handleSubmit}
             >
-              Apply Color / Update Room Selection
+              Apply Selections
             </div>
           </div>
         </div>

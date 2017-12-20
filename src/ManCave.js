@@ -14,7 +14,7 @@ export default class ManCave extends Component {
     if(props.active_room==="Man Cave"){
       this.setState({ 
         manCaveColor: props.room_color,
-        manCaveFurniture: props.furniture
+        manCaveFurniture: props.selected_furniture
       });
     }else{
       this.setState({ 
@@ -26,7 +26,7 @@ export default class ManCave extends Component {
 
   render(){
     console.log(this.state)
-    const { active_room, furniture, colorPicker, furniturePicker } = this.props;
+    const { active_room, selected_furniture, colorPicker, furniturePicker } = this.props;
     const { manCaveColor, manCaveFurniture } = this.state;
     const styles = {
       manCaveStyles: {
@@ -34,7 +34,7 @@ export default class ManCave extends Component {
         backgroundColor: active_room === "Man Cave" ? colorPicker(manCaveColor) : ''
       },
       imageStyles: {
-        imageURL: active_room === "Man Cave" ? furniturePicker(furniture) : '',
+        imageURL: active_room === "Man Cave" ? furniturePicker(selected_furniture) : '',
         maxHeight: 100
       }
     };

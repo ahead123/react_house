@@ -14,7 +14,7 @@ export default class Kitchen extends Component {
     if(props.active_room==="Kitchen"){
       this.setState({ 
         kitchenColor: props.room_color,
-        kitchenFurniture: props.furniture
+        kitchenFurniture: props.selected_furniture
       });
     }else{
       this.setState({ 
@@ -26,7 +26,7 @@ export default class Kitchen extends Component {
 
   render(){
     console.log(this.state)
-    const { active_room, furniture, colorPicker, furniturePicker } = this.props;
+    const { active_room, selected_furniture, colorPicker, furniturePicker } = this.props;
     const { kitchenColor, kitchenFurniture } = this.state;
     const styles = {
       kitchenStyles: {
@@ -34,7 +34,7 @@ export default class Kitchen extends Component {
         backgroundColor: active_room === "Kitchen" ? colorPicker(kitchenColor) : ''
       },
       imageStyles: {
-        imageURL: active_room === "Kitchen" ? furniturePicker(furniture) : '',
+        imageURL: active_room === "Kitchen" ? furniturePicker(selected_furniture) : '',
         maxHeight: 100
       }
     };
