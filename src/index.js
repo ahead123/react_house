@@ -101,13 +101,6 @@ class App extends Component {
             />
           </div>
 
-          <div className="col-sm-3 styled-select blue rounded">
-            <Select 
-              onChange={event => this.setState({ furniture: event.target.value, error: '' })} 
-              values={["Select furniture","chair","couch","bed","table"]} 
-            />
-          </div>
-
         </div>
 
         <div style={{marginTop: 30}}></div>

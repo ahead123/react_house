@@ -31,7 +31,13 @@ export default class BedRoom extends Component {
     }else{
       this.setState({ 
         bedRoomColor: 'default', 
-        bedRoomFurniture: '' 
+        bedRoomFurniture: '',
+        addMultiples: {
+          couch: false,
+          chair: false,
+          table: false,
+          bed: false
+        } 
       });
     }
   }
