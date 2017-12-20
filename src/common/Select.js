@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Select = ({ onChange, values }) => {
 	return(
@@ -16,4 +16,4 @@ const Select = ({ onChange, values }) => {
 	)
 }
 
-export default Select
+export { Select } 

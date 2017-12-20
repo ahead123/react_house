@@ -1,1 +1,5 @@
 # react-house
+<<<<<<< HEAD
+=======
+
+>>>>>>> testing
