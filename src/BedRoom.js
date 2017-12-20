@@ -6,7 +6,13 @@ export default class BedRoom extends Component {
     super(props);
     this.state = {
       bedRoomColor: 'default',
-      bedRoomFurniture: ''
+      bedRoomFurniture: '',
+      addMultiples: {
+        couch: false,
+        chair: false,
+        table: false,
+        bed: false
+      }
     };
   }
 
@@ -14,7 +20,13 @@ export default class BedRoom extends Component {
     if(props.active_room==="Bed Room"){
       this.setState({ 
         bedRoomColor: props.room_color,
-        bedRoomFurniture: props.selected_furniture
+        bedRoomFurniture: props.selected_furniture,
+        addMultiples: {
+          couch: props.couch_is_checked,
+          chair: props.chair_is_checked,
+          table: props.table_is_checked,
+          bed: props.bed_is_checked
+        }
       });
     }else{
       this.setState({ 
@@ -25,9 +37,13 @@ export default class BedRoom extends Component {
   }
 
   render(){
-    console.log('this.props',this.props);
+    console.log('state in bedroom', this.state)
     const { active_room, selected_furniture, colorPicker, furniturePicker } = this.props;
-    const { bedRoomColor, bedRoomFurniture } = this.state;
+    const { 
+      bedRoomColor, 
+      bedRoomFurniture, 
+      addMultiples: { couch, bed, chair, table } 
+    } = this.state;
     const styles = {
       bedRoomStyles: {
         minHeight: 200,
@@ -35,7 +51,7 @@ export default class BedRoom extends Component {
       },
       imageStyles: {
         imageURL: active_room === "Bed Room" ? furniturePicker(selected_furniture) : '',
-        maxHeight: 100
+        maxHeight: 40
       }
     };
 
@@ -46,15 +62,25 @@ export default class BedRoom extends Component {
           Bed Room
         </div>
         <div className="panel-body" style={styles.bedRoomStyles}>
-          <h4 style={{color: 'white'}}>
-          {
-            active_room === "Bed Room" && bedRoomFurniture !== 'Select furniture' && bedRoomFurniture !== '' ? `${bedRoomFurniture} added!` : ''
-          }
-          </h4>
-          <div>
+          <div className="col-md-3">
             {
-              bedRoomFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles}/> : ''
+              couch ? <img style={{maxHeight: 100}} className="img-responsive" src="https://i.pinimg.com/originals/cb/65/fb/cb65fb3931a2b1e3cb6b1a8dfbfceb82.jpg" alt="" /> : ''
+            }   
+          </div>
+          <div className="col-md-3">
+            {
+              bed ? <img style={{maxHeight: 100}} className="img-responsive" src="https://www.svgrepo.com/show/115528/bed.svg" alt="" /> : ''
             }
+          </div>
+          <div className="col-md-3">
+            {
+              table ? <img style={{maxHeight: 100}} className="img-responsive" src="https://png.icons8.com/windows/540/table.png" alt="" /> : ''
+            }
+          </div>
+          <div className="col-md-3">
+            {
+              chair ? <img style={{maxHeight: 100}} className="img-responsive" src="https://png.icons8.com/small/540/sofa.png" alt="" /> : ''
+            } 
           </div>
         </div>
         </div>

@@ -24,8 +24,7 @@ export default class ManCave extends Component {
     }
   }
 
-  render(){
-    console.log(this.state)
+  render(){    
     const { active_room, selected_furniture, colorPicker, furniturePicker } = this.props;
     const { manCaveColor, manCaveFurniture } = this.state;
     const styles = {
@@ -53,7 +52,7 @@ export default class ManCave extends Component {
           </h4>
           <div>
             {
-              manCaveFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles}/> : ''
+              manCaveFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles} alt="" /> : ''
             }
           </div>
         </div>

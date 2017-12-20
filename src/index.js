@@ -26,29 +26,37 @@ class App extends Component {
       selected_furniture: '',
       active_room: '',      
       error: '',
+      color_drop_down_values: [],
+      couch_is_checked: false,
+      bed_is_checked: false,
+      chair_is_checked: false,
+      table_is_checked: false,
       furniturePicker,
-      colorPicker,
-      color_drop_down_values: []
+      colorPicker
     };
   };
 
   componentDidMount(){
-    this.setState({ color_drop_down_values: colorSelectDropDownValues })
+    this.setState({ color_drop_down_values: colorSelectDropDownValues });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { room, color, furniture, selected_furniture } = this.state;
+
+    const { room, color, furniture } = this.state;
    
-    if(room!=="Select a room" && color!=="Select a color" && furniture !== "Select furniture"){
-     this.setState({
-       room_color: color,
-       selected_furniture: furniture,
-       active_room: room       
-      });
+    if(room!=="Select a room" && color!=="Select a color"){
+      this.setState({
+        room_color: color,
+        selected_furniture: furniture,
+        active_room: room    
+       });
     }else{
-       this.setState({error: "Please select a room, a color, and furnture!"});
-    }
+      this.setState({
+        error: "Please select a room, a color, and furnture!"
+      });
+    };
+
   };
 
   handleReset = (event) => {
@@ -60,9 +68,9 @@ class App extends Component {
     });
   };
 
-
   render() {
     console.log('state inside parent',this.state);
+
     return (
       <div className="container">
 
@@ -103,6 +111,40 @@ class App extends Component {
         </div>
 
         <div style={{marginTop: 30}}></div>
+
+        <div className="row">
+          <div className="col-md-4 col-md-offset-4 well">
+           <h4>Add Furniture</h4>
+            <div className="checkbox">
+              <label>
+                <input 
+                  type="checkbox" 
+                  value="couch" 
+                  onChange={() => this.setState({couch_is_checked:!this.state.couch_is_checked})} 
+                />
+               Couch
+              </label>
+            </div>
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" value="bed" onChange={() => this.setState({bed_is_checked:!this.state.bed_is_checked})} />
+                  Bed
+              </label>
+            </div>
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" value="chair" onChange={() => this.setState({chair_is_checked:!this.state.chair_is_checked})} />
+                  Chair
+              </label>
+            </div>
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" value="table" onChange={() => this.setState({table_is_checked:!this.state.table_is_checked})} />
+                  Table
+              </label>
+            </div>
+          </div>
+        </div>
 
         <div style={{marginTop: 30}}></div>
 

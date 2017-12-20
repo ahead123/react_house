@@ -25,7 +25,6 @@ export default class Kitchen extends Component {
   }
 
   render(){
-    console.log(this.state)
     const { active_room, selected_furniture, colorPicker, furniturePicker } = this.props;
     const { kitchenColor, kitchenFurniture } = this.state;
     const styles = {
@@ -53,7 +52,7 @@ export default class Kitchen extends Component {
           </h4>
           <div>
             {
-              kitchenFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles}/> : ''
+              kitchenFurniture !== '' ? <img className="img-responsive" src={styles.imageStyles.imageURL} style={styles.imageStyles} alt="" /> : ''
             }
           </div>
         </div>
