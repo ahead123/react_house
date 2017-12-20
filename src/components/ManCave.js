@@ -6,7 +6,6 @@ export default class ManCave extends Component {
     super(props);
     this.state = {
       manCaveColor: 'default',
-      manCaveFurniture: '',
       addMultiples: {
         couch: false,
         chair: false,
@@ -20,7 +19,6 @@ export default class ManCave extends Component {
     if(props.active_room==="Man Cave"){
       this.setState({ 
         manCaveColor: props.room_color,
-        manCaveFurniture: props.selected_furniture,
         addMultiples: {
           couch: props.couch_is_checked,
           chair: props.chair_is_checked,
@@ -31,7 +29,6 @@ export default class ManCave extends Component {
     }else{
       this.setState({ 
         manCaveColor: 'default', 
-        manCaveFurniture: '',
         addMultiples: {
           couch: false,
           chair: false,
@@ -44,11 +41,7 @@ export default class ManCave extends Component {
 
   render(){    
     const { active_room, colorPicker, furniturePicker } = this.props;
-    const { manCaveColor, manCaveFurniture, 
-      addMultiples: { 
-        couch, bed, chair, table
-      } 
-    } = this.state;
+    const { manCaveColor, addMultiples: { couch, bed, chair, table } } = this.state;
     const styles = {
       manCaveStyles: {
         minHeight: 200,

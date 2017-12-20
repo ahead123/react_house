@@ -6,7 +6,6 @@ export default class BedRoom extends Component {
     super(props);
     this.state = {
       bedRoomColor: 'default',
-      bedRoomFurniture: '',
       addMultiples: {
         couch: false,
         chair: false,
@@ -20,7 +19,6 @@ export default class BedRoom extends Component {
     if(props.active_room==="Bed Room"){
       this.setState({ 
         bedRoomColor: props.room_color,
-        bedRoomFurniture: props.selected_furniture,
         addMultiples: {
           couch: props.couch_is_checked,
           chair: props.chair_is_checked,
@@ -31,7 +29,6 @@ export default class BedRoom extends Component {
     }else{
       this.setState({ 
         bedRoomColor: 'default', 
-        bedRoomFurniture: '',
         addMultiples: {
           couch: false,
           chair: false,
@@ -45,11 +42,7 @@ export default class BedRoom extends Component {
   render(){
     console.log('state in bedroom', this.state)
     const { active_room, colorPicker, furniturePicker } = this.props;
-    const { 
-      bedRoomColor, 
-      bedRoomFurniture, 
-      addMultiples: { couch, bed, chair, table } 
-    } = this.state;
+    const { bedRoomColor, addMultiples: { couch, bed, chair, table } } = this.state;
     const styles = {
       bedRoomStyles: {
         minHeight: 200,
