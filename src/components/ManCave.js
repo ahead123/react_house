@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Furniture } from '../common';
 
 export default class ManCave extends Component {
 
@@ -6,7 +7,6 @@ export default class ManCave extends Component {
     super(props);
     this.state = {
       manCaveColor: 'default',
-      manCaveFurniture: '',
       addMultiples: {
         couch: false,
         chair: false,
@@ -20,7 +20,6 @@ export default class ManCave extends Component {
     if(props.active_room==="Man Cave"){
       this.setState({ 
         manCaveColor: props.room_color,
-        manCaveFurniture: props.selected_furniture,
         addMultiples: {
           couch: props.couch_is_checked,
           chair: props.chair_is_checked,
@@ -31,7 +30,6 @@ export default class ManCave extends Component {
     }else{
       this.setState({ 
         manCaveColor: 'default', 
-        manCaveFurniture: '',
         addMultiples: {
           couch: false,
           chair: false,
@@ -44,11 +42,8 @@ export default class ManCave extends Component {
 
   render(){    
     const { active_room, colorPicker, furniturePicker } = this.props;
-    const { manCaveColor, manCaveFurniture, 
-      addMultiples: { 
-        couch, bed, chair, table
-      } 
-    } = this.state;
+    const { 
+      manCaveColor, addMultiples: { couch, bed, chair, table } } = this.state;
     const styles = {
       manCaveStyles: {
         minHeight: 200,
@@ -58,35 +53,23 @@ export default class ManCave extends Component {
         maxHeight: 100
       }
     };
+    const { manCaveStyles, imageStyles } = styles;
 
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
         <div className={`panel panel-${manCaveColor}`}>
-          <div className="panel-heading">
-            Man Cave
-          </div>
-          <div className="panel-body" style={styles.manCaveStyles}>
-            <div className="col-md-3">
-              {
-                couch ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('couch')} alt="" /> : ''
-              }   
-            </div>
-            <div className="col-md-3">
-              {
-                bed ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('bed')} alt="" /> : ''
-              }
-            </div>
-            <div className="col-md-3">
-              {
-                table ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('table')} alt="" /> : ''
-              }
-            </div>
-            <div className="col-md-3">
-              {
-                chair ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('chair')} alt="" /> : ''
-              } 
-            </div>
-          </div>
+        <div className="panel-heading">
+          Man Cave
+        </div>
+        <div className="panel-body" style={manCaveStyles}>
+          <Furniture 
+            couch={couch} 
+            bed={bed} 
+            chair={chair} 
+            table={table} 
+            furniturePicker={furniturePicker} 
+          />
+        </div>
         </div>
       </div>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Furniture } from '../common';
 
 export default class BedRoom extends Component {
 
@@ -6,7 +7,6 @@ export default class BedRoom extends Component {
     super(props);
     this.state = {
       bedRoomColor: 'default',
-      bedRoomFurniture: '',
       addMultiples: {
         couch: false,
         chair: false,
@@ -20,7 +20,6 @@ export default class BedRoom extends Component {
     if(props.active_room==="Bed Room"){
       this.setState({ 
         bedRoomColor: props.room_color,
-        bedRoomFurniture: props.selected_furniture,
         addMultiples: {
           couch: props.couch_is_checked,
           chair: props.chair_is_checked,
@@ -31,7 +30,6 @@ export default class BedRoom extends Component {
     }else{
       this.setState({ 
         bedRoomColor: 'default', 
-        bedRoomFurniture: '',
         addMultiples: {
           couch: false,
           chair: false,
@@ -43,13 +41,9 @@ export default class BedRoom extends Component {
   }
 
   render(){
-    console.log('state in bedroom', this.state)
+    console.log('state in bedroom', this.state);
     const { active_room, colorPicker, furniturePicker } = this.props;
-    const { 
-      bedRoomColor, 
-      bedRoomFurniture, 
-      addMultiples: { couch, bed, chair, table } 
-    } = this.state;
+    const { bedRoomColor, addMultiples: { couch, bed, chair, table } } = this.state;
     const styles = {
       bedRoomStyles: {
         minHeight: 200,
@@ -59,36 +53,26 @@ export default class BedRoom extends Component {
         maxHeight: 100
       }
     };
+    const { bedRoomStyles, imageStyles } = styles;
 
     return(
       <div className="col-md-3 col-sm-6 col-lg-6">
-        <div className={`panel panel-${bedRoomColor}`} style={styles.bedRoomStyles}>
+
+        <div className={`panel panel-${bedRoomColor}`}>
         <div className="panel-heading">
           Bed Room
         </div>
-        <div className="panel-body" style={styles.bedRoomStyles}>
-          <div className="col-md-3">
-            {
-              couch ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('couch')} alt="" /> : ''
-            }   
-          </div>
-          <div className="col-md-3">
-            {
-              bed ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('bed')} alt="" /> : ''
-            }
-          </div>
-          <div className="col-md-3">
-            {
-              table ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('table')} alt="" /> : ''
-            }
-          </div>
-          <div className="col-md-3">
-            {
-              chair ? <img style={styles.imageStyles} className="img-responsive" src={this.props.furniturePicker('chair')} alt="" /> : ''
-            } 
+          <div className="panel-body" style={bedRoomStyles}>
+            <Furniture 
+              couch={couch} 
+              bed={bed} 
+              chair={chair} 
+              table={table} 
+              furniturePicker={furniturePicker} 
+            />
           </div>
         </div>
-        </div>
+
       </div>
     )
   }

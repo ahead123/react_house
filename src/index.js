@@ -22,8 +22,6 @@ class App extends Component {
       room: 'Select a room',
       color: 'Select a color',
       room_color: '',
-      furniture: 'Select furniture',
-      selected_furniture: '',
       active_room: '',            
       color_drop_down_values: [],
       couch_is_checked: false,
@@ -43,29 +41,18 @@ class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { room, color, furniture } = this.state;
-   
-    if(room!=="Select a room" && color!=="Select a color"){
-      this.setState({
-        room_color: color,
-        selected_furniture: furniture,
-        active_room: room    
-       });
-    }else{
-      this.setState({
-        error: "Please select a room, a color, and furnture!"
-      });
-    };
+    const { room, color } = this.state;
 
+    if(room!=="Select a room" && color!=="Select a color"){
+      this.setState({ room_color: color, active_room: room });
+    }else{
+      this.setState({ error: "Please select a room, a color!" });
+    };
   };
 
   handleReset = (event) => {
     event.preventDefault();
-    this.setState({
-      error: '',
-      room_color: '',
-      active_room: ''
-    });
+    this.setState({ error: '', room_color: '', active_room: '' });
   };
 
   render() {
@@ -110,12 +97,8 @@ class App extends Component {
            <h4>Add Furniture</h4>
             <div className="checkbox">
               <label>
-                <input 
-                  type="checkbox" 
-                  value="couch" 
-                  onChange={() => this.setState({couch_is_checked:!this.state.couch_is_checked})} 
-                />
-               Couch
+                <input type="checkbox" value="couch" onChange={() => this.setState({couch_is_checked:!this.state.couch_is_checked})} />
+                  Couch
               </label>
             </div>
             <div className="checkbox">
