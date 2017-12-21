@@ -17,7 +17,7 @@ export const furniturePicker = (item) => {
     'desk': 'https://image.flaticon.com/icons/png/512/10/10910.png',
     'tv': 'https://vignette.wikia.nocookie.net/expanse/images/3/3b/Tv_icon.png/revision/latest?cb=20170225173256',
     'fridge': 'https://cdn2.iconfinder.com/data/icons/kitchen-line-icons-1/48/30-512.png',
-    'microwave': 'http://downloadicons.net/sites/default/files/microwave-oven-icon-89610.png'
+    'microwave': 'https://image.flaticon.com/icons/png/512/47/47544.png'
   };
   return furnitureStore[item];
 };
