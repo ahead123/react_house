@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Furniture } from '../common';
 
 export default class LivingRoom extends Component {
 
@@ -61,26 +62,13 @@ export default class LivingRoom extends Component {
           Living Room
         </div>
         <div className="panel-body" style={livingRoomStyles}>
-          <div className="col-md-3">
-            {
-              couch ? <img style={imageStyles} className="img-responsive" src={furniturePicker('couch')} alt="" /> : ''
-            }   
-          </div>
-          <div className="col-md-3">
-            {
-              bed ? <img style={imageStyles} className="img-responsive" src={furniturePicker('bed')} alt="" /> : ''
-            }
-          </div>
-          <div className="col-md-3">
-            {
-              table ? <img style={imageStyles} className="img-responsive" src={furniturePicker('table')} alt="" /> : ''
-            }
-          </div>
-          <div className="col-md-3">
-            {
-              chair ? <img style={imageStyles} className="img-responsive" src={furniturePicker('chair')} alt="" /> : ''
-            } 
-          </div>
+          <Furniture 
+            couch={couch} 
+            bed={bed} 
+            chair={chair} 
+            table={table} 
+            furniturePicker={furniturePicker} 
+          />
         </div>
         </div>
       </div>
