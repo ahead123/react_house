@@ -13,7 +13,11 @@ export const furniturePicker = (item) => {
     'couch': 'https://i.pinimg.com/originals/cb/65/fb/cb65fb3931a2b1e3cb6b1a8dfbfceb82.jpg',
     'chair': 'https://png.icons8.com/small/540/sofa.png',
     'bed': 'https://www.svgrepo.com/show/115528/bed.svg',
-    'table': 'https://png.icons8.com/windows/540/table.png'
+    'table': 'https://png.icons8.com/windows/540/table.png',
+    'desk': 'https://image.flaticon.com/icons/png/512/10/10910.png',
+    'tv': 'https://vignette.wikia.nocookie.net/expanse/images/3/3b/Tv_icon.png/revision/latest?cb=20170225173256',
+    'fridge': 'https://cdn2.iconfinder.com/data/icons/kitchen-line-icons-1/48/30-512.png',
+    'microwave': 'http://downloadicons.net/sites/default/files/microwave-oven-icon-89610.png'
   };
   return furnitureStore[item];
 };

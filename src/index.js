@@ -23,6 +23,10 @@ class App extends Component {
       bed_is_checked: false,
       chair_is_checked: false,
       table_is_checked: false,
+      desk_is_checked: false,
+      tv_is_checked: false,
+      fridge_is_checked: false,
+      microwave_is_checked: false,
       error: '',
       furniturePicker,
       colorPicker
@@ -89,11 +93,19 @@ class App extends Component {
 
         <div className="row">
           <div className="col-md-4 col-md-offset-4 well">
-           <h4>Add Furniture</h4>
-            <Checkbox name="Couch" value="couch" onChange={() => this.setState({couch_is_checked:!this.state.couch_is_checked})} />
-            <Checkbox name="Bed" value="bed" onChange={() => this.setState({bed_is_checked:!this.state.bed_is_checked})} />
-            <Checkbox name="Chair" value="chair" onChange={() => this.setState({chair_is_checked:!this.state.chair_is_checked})} />
-            <Checkbox name="Table" value="table" onChange={() => this.setState({table_is_checked:!this.state.table_is_checked})} />
+            <h4>Add Furniture</h4>
+            <div className="row col-md-6">
+              <Checkbox name="Couch" value="couch" onChange={() => this.setState({ couch_is_checked: !this.state.couch_is_checked })} />
+              <Checkbox name="Bed" value="bed" onChange={() => this.setState({ bed_is_checked: !this.state.bed_is_checked })} />
+              <Checkbox name="Chair" value="chair" onChange={() => this.setState({ chair_is_checked: !this.state.chair_is_checked })} />
+              <Checkbox name="Table" value="table" onChange={() => this.setState({ table_is_checked: !this.state.table_is_checked })} />
+            </div>
+            <div className="row col-md-6">
+              <Checkbox name="Desk" value="desk" onChange={() => this.setState({ desk_is_checked: !this.state.desk_is_checked })} />
+              <Checkbox name="TV" value="tv" onChange={() => this.setState({ tv_is_checked: !this.state.tv_is_checked })} />
+              <Checkbox name="Fridge" value="fridge" onChange={() => this.setState({ fridge_is_checked: !this.state.fridge_is_checked })} />
+              <Checkbox name="Microwave" value="microwave" onChange={() => this.setState({ microwave_is_checked: !this.state.microwave_is_checked })} />
+            </div>
           </div>
         </div>
 
