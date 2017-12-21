@@ -4,7 +4,7 @@ const Select = ({ onChange, values }) => {
 	return(
 		<select onChange={onChange}>
 			{
-				 values.map((val, index) => {
+				values.map((val, index) => {
            if(val.value){
              return <option value={val.value} key={index}>{val.name}</option>
            }else{

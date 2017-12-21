@@ -11,7 +11,11 @@ export default class BedRoom extends Component {
         couch: false,
         chair: false,
         table: false,
-        bed: false
+        bed: false,
+        tv: false,
+        desk: false,
+        fridge: false,
+        microwave: false
       }
     };
   }
@@ -24,7 +28,11 @@ export default class BedRoom extends Component {
           couch: props.couch_is_checked,
           chair: props.chair_is_checked,
           table: props.table_is_checked,
-          bed: props.bed_is_checked
+          bed: props.bed_is_checked,
+          desk: props.desk_is_checked,
+          tv: props.tv_is_checked,
+          fridge: props.fridge_is_checked,
+          microwave: props.microwave_is_checked
         }
       });
     }else{
@@ -34,7 +42,11 @@ export default class BedRoom extends Component {
           couch: false,
           chair: false,
           table: false,
-          bed: false
+          bed: false,
+          tv: false,
+          desk: false,
+          fridge: false,
+          microwave: false
         } 
       });
     }
@@ -43,10 +55,15 @@ export default class BedRoom extends Component {
   render(){
     console.log('state in bedroom', this.state);
     const { active_room, colorPicker, furniturePicker } = this.props;
-    const { bedRoomColor, addMultiples: { couch, bed, chair, table } } = this.state;
+    const { 
+      bedRoomColor, 
+      addMultiples: { 
+        couch, bed, chair, table, desk, tv, fridge, microwave 
+      } 
+    } = this.state;
     const styles = {
       bedRoomStyles: {
-        minHeight: 200,
+        minHeight: 250,
         backgroundColor: active_room === "Bed Room" ? colorPicker(bedRoomColor) : ''
       },
       imageStyles: {        
@@ -67,7 +84,11 @@ export default class BedRoom extends Component {
               couch={couch} 
               bed={bed} 
               chair={chair} 
-              table={table} 
+              table={table}
+              microwave={microwave}
+              tv={tv}
+              fridge={fridge}
+              desk={desk} 
               furniturePicker={furniturePicker} 
             />
           </div>

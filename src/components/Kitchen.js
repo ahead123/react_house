@@ -11,7 +11,11 @@ export default class Kitchen extends Component {
         couch: false,
         chair: false,
         table: false,
-        bed: false
+        bed: false,
+        tv: false,
+        desk: false,
+        fridge: false,
+        microwave: false
       }
     };
   }
@@ -24,28 +28,41 @@ export default class Kitchen extends Component {
           couch: props.couch_is_checked,
           chair: props.chair_is_checked,
           table: props.table_is_checked,
-          bed: props.bed_is_checked
+          bed: props.bed_is_checked,
+          desk: props.desk_is_checked,
+          tv: props.tv_is_checked,
+          fridge: props.fridge_is_checked,
+          microwave: props.microwave_is_checked
         }
       });
     }else{
       this.setState({ 
         kitchenColor: 'default', 
-      addMultiples: {
-        couch: false,
-        chair: false,
-        table: false,
-        bed: false
-      } 
+        addMultiples: {
+          couch: false,
+          chair: false,
+          table: false,
+          bed: false,
+          tv: false,
+          desk: false,
+          fridge: false,
+          microwave: false
+        } 
       });
     }
   }
 
   render(){
     const { active_room, colorPicker, furniturePicker } = this.props;
-    const { kitchenColor, addMultiples: { couch, bed, chair, table } } = this.state;
+    const { 
+      kitchenColor, 
+      addMultiples: { 
+        couch, bed, chair, table, desk, tv, fridge, microwave 
+      } 
+    } = this.state;
     const styles = {
       kitchenStyles: {
-        minHeight: 200,
+        minHeight: 250,
         backgroundColor: active_room === "Kitchen" ? colorPicker(kitchenColor) : ''
       },
       imageStyles: {        
@@ -65,7 +82,11 @@ export default class Kitchen extends Component {
               couch={couch} 
               bed={bed} 
               chair={chair} 
-              table={table} 
+              table={table}
+              microwave={microwave}
+              tv={tv}
+              fridge={fridge}
+              desk={desk}  
               furniturePicker={furniturePicker} 
             />
           </div>
