@@ -4,14 +4,9 @@ import LivingRoom from './components/LivingRoom';
 import BedRoom from './components/BedRoom';
 import Kitchen from './components/Kitchen';
 import ManCave from './components/ManCave';
-import { Select } from './common';
-import { 
-  furniturePicker, 
-  colorPicker, 
-  colorSelectDropDownValues 
-} from './constants';
+import { Select, Checkbox } from './common';
+import { furniturePicker, colorPicker, colorSelectDropDownValues } from './constants';
 import './styles/style.css';
-
 
 class App extends Component {
 
@@ -95,30 +90,10 @@ class App extends Component {
         <div className="row">
           <div className="col-md-4 col-md-offset-4 well">
            <h4>Add Furniture</h4>
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" value="couch" onChange={() => this.setState({couch_is_checked:!this.state.couch_is_checked})} />
-                  Couch
-              </label>
-            </div>
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" value="bed" onChange={() => this.setState({bed_is_checked:!this.state.bed_is_checked})} />
-                  Bed
-              </label>
-            </div>
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" value="chair" onChange={() => this.setState({chair_is_checked:!this.state.chair_is_checked})} />
-                  Chair
-              </label>
-            </div>
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" value="table" onChange={() => this.setState({table_is_checked:!this.state.table_is_checked})} />
-                  Table
-              </label>
-            </div>
+            <Checkbox name="Couch" value="couch" onChange={() => this.setState({couch_is_checked:!this.state.couch_is_checked})} />
+            <Checkbox name="Bed" value="bed" onChange={() => this.setState({bed_is_checked:!this.state.bed_is_checked})} />
+            <Checkbox name="Chair" value="chair" onChange={() => this.setState({chair_is_checked:!this.state.chair_is_checked})} />
+            <Checkbox name="Table" value="table" onChange={() => this.setState({table_is_checked:!this.state.table_is_checked})} />
           </div>
         </div>
 
